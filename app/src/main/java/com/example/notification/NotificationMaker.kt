@@ -10,6 +10,7 @@ import android.os.Parcelable
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.notification.data.TrashBag
 import java.io.Serializable
 
 class NotificationMaker(context: Context, trashBag: TrashBag): Serializable {

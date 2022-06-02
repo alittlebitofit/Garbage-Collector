@@ -3,6 +3,12 @@
 - Make the Service schedule alarms
 
 
+Steps to follow
+1 - Activity -> Receiver
+2 - Receiver -> Service
+3 - Service (extracts all the TrashBags and sets the alarms) -> System
+
+
 ======= 'oud papier en karton' == gray,
 
 'grofvuil en electrische apparaten' can be ignored,
