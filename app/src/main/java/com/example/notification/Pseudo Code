@@ -1,0 +1,80 @@
+- Pass list of notifications to Receiver in an Intent
+- Start a Service from Receiver and pass the list to the Service
+- Make the Service schedule alarms
+
+
+======= 'oud papier en karton' == gray,
+
+'grofvuil en electrische apparaten' can be ignored,
+
+======= 'biobak' == green,
+======= 'sortibak' == purple,
+
+'snoeiafval' can also be ignored
+
+
+Notification title = "Gray trash bag for tomorrow"
+
+
+
+
+January
+Gray = 19
+Green = 13, 27
+Purple = 6, 20
+
+
+February
+Gray = 16
+Green = 10, 24
+Purple = 3, 17
+
+March
+Gray = 16
+Green = 10, 24
+Purple = 3, 17, 31
+
+April
+Gray = 13
+Green = 7, 21
+Purple = 14, 28
+
+May
+Gray = 11
+Green = 5, 19
+Purple = 12, 28
+
+June
+Gray = 8
+Green = 2, 16, 30
+Purple = 9, 23
+
+July
+Gray = 6
+Green = 14, 28
+Purple = 7, 21
+
+August
+Gray = 3, 31
+Green = 11, 25
+Purple = 4, 18
+
+September
+Gray = 28
+Green = 8, 22
+Purple = 1, 15, 29
+
+October
+Gray = 26
+Green = 6, 20
+Purple = 13, 27
+
+November
+Gray = 23
+Green = 3, 17
+Purple = 10, 24
+
+December
+Gray = 21
+Green = 1, 15, 29
+Purple = 8, 22
