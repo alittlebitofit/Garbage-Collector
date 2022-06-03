@@ -13,14 +13,14 @@ import androidx.core.app.NotificationManagerCompat
 import com.example.notification.data.TrashBag
 import java.io.Serializable
 
-class NotificationMaker(context: Context, trashBag: TrashBag): Serializable {
+class NotificationMaker(private val context: Context) {
 
 
     init {
-        createNotificationChannel(context)
+        createNotificationChannel()
     }
 
-    private fun createNotificationChannel(context: Context) {
+    private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -38,13 +38,12 @@ class NotificationMaker(context: Context, trashBag: TrashBag): Serializable {
         }
     }
 
-    private fun createNotificationContent(
-        context: Context,
-        trashBag: TrashBag
+    fun createNotificationContent(
+        trashBagColor: String
     ): Notification {
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
-            .setContentTitle("${trashBag.bagColor.bagColor} color garbage bag for tomorrow")
+            .setContentTitle("$trashBagColor color garbage bag for tomorrow")
 //            .setContentText("textContent")
             .setDefaults(Notification.DEFAULT_ALL)
             .setPriority(NotificationCompat.PRIORITY_HIGH) // pops up the notification
@@ -53,7 +52,7 @@ class NotificationMaker(context: Context, trashBag: TrashBag): Serializable {
 
 
 
-    private fun notify(context: Context, notificationID: Int, notification: Notification) {
+    fun notify(notificationID: Int, notification: Notification) {
         with(NotificationManagerCompat.from(context)) {
             notify(notificationID, notification)
 //            Toast.makeText(context, "notifying", Toast.LENGTH_LONG)

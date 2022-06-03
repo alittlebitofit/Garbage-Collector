@@ -1,12 +1,21 @@
-- Pass list of notifications to Receiver in an Intent
-- Start a Service from Receiver and pass the list to the Service
-- Make the Service schedule alarms
+1- Schedule an alarm in for current time
+2- Schedule an alarm with a notification
+3- Schedule 2 two alarms for current time 10 seconds apart
+4- Schedule both alarms with notifications
+
+5- Schedule an alarm from within a service
+6- Schedule an alarm using NotificationMaker
+7- Schedule all alarms finally
 
 
-Steps to follow
-1 - Activity -> Receiver
-2 - Receiver -> Service
-3 - Service (extracts all the TrashBags and sets the alarms) -> System
+days within colors
+colors within months
+months
+
+
+months
+each month has color
+each color has days
 
 
 ======= 'oud papier en karton' == gray,
@@ -20,9 +29,6 @@ Steps to follow
 
 
 Notification title = "Gray trash bag for tomorrow"
-
-
-
 
 January
 Gray = 19

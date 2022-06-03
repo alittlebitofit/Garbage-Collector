@@ -1,11 +1,28 @@
 package com.example.notification.data
 
+import android.icu.lang.UCharacter.JoiningGroup.FE
 
-data class TrashBag(val month: Month, val days: List<Day>, val bagColor: BagColor)
+
+data class TrashBag(val month: Month, val days: Array<Day>, val bagColor: BagColor)
 
 data class Month(val month: Int)
 data class Day(val day: Int)
 data class BagColor(val bagColor: String)
+
+enum class MonthOfYear(private val monthNumber: Int) {
+    JANUARY(0),
+    FEBRUARY(1),
+    MARCH(2),
+    APRIL(3),
+    MAY(4),
+    JUNE(5),
+    JULY(6),
+    AUGUST(7),
+    SEPTEMBER(8),
+    OCTOBER(9),
+    NOVEMBER(10),
+    DECEMBER(11),
+}
 
 object TrashBags {
     // january trash bags
@@ -13,22 +30,22 @@ object TrashBags {
         val januaryTrashBag = mutableListOf<TrashBag>()
         januaryTrashBag.add(
             TrashBag(
-                Month(1),
-                listOf(Day(18)),
+                Month(MonthOfYear.JANUARY.ordinal),
+                arrayOf(Day(18)),
                 BagColor("Gray")
             )
         )
         januaryTrashBag.add(
             TrashBag(
-                Month(1),
-                listOf(Day(12), Day(26)),
+                Month(MonthOfYear.JANUARY.ordinal),
+                arrayOf(Day(12), Day(26)),
                 BagColor("Green")
             )
         )
         januaryTrashBag.add(
             TrashBag(
-                Month(1),
-                listOf(Day(5), Day(19)),
+                Month(MonthOfYear.JANUARY.ordinal),
+                arrayOf(Day(5), Day(19)),
                 BagColor("Purple")
             )
         )
@@ -36,26 +53,26 @@ object TrashBags {
     }
 
     // february trash bags
-    private fun februaryTrashBags(): List<TrashBag> {
+    fun februaryTrashBags(): List<TrashBag> {
         val februaryTrashBags = mutableListOf<TrashBag>()
         februaryTrashBags.add(
             TrashBag(
-                Month(3),
-                listOf(Day(15)),
+                Month(MonthOfYear.FEBRUARY.ordinal),
+                arrayOf(Day(15)),
                 BagColor("Gray")
             )
         )
         februaryTrashBags.add(
             TrashBag(
-                Month(3),
-                listOf(Day(9), Day(23)),
+                Month(MonthOfYear.FEBRUARY.ordinal),
+                arrayOf(Day(9), Day(23)),
                 BagColor("Green")
             )
         )
         februaryTrashBags.add(
             TrashBag(
-                Month(3),
-                listOf(Day(2), Day(16)),
+                Month(MonthOfYear.FEBRUARY.ordinal),
+                arrayOf(Day(2), Day(16)),
                 BagColor("Purple")
             )
         )
@@ -63,26 +80,26 @@ object TrashBags {
     }
 
     // march trash bags
-    private fun marchTrashBags(): List<TrashBag> {
+    fun marchTrashBags(): List<TrashBag> {
         val marchTrashBags = mutableListOf<TrashBag>()
         marchTrashBags.add(
             TrashBag(
-                Month(3),
-                listOf(Day(15)),
+                Month(MonthOfYear.MARCH.ordinal),
+                arrayOf(Day(15)),
                 BagColor("Gray")
             )
         )
         marchTrashBags.add(
             TrashBag(
-                Month(3),
-                listOf(Day(9), Day(23)),
+                Month(MonthOfYear.MARCH.ordinal),
+                arrayOf(Day(9), Day(23)),
                 BagColor("Green")
             )
         )
         marchTrashBags.add(
             TrashBag(
-                Month(3),
-                listOf(Day(2), Day(16), Day(30)),
+                Month(MonthOfYear.MARCH.ordinal),
+                arrayOf(Day(2), Day(16), Day(30)),
                 BagColor("Purple")
             )
         )
@@ -90,26 +107,26 @@ object TrashBags {
     }
 
     // april trash bags
-    private fun aprilTrashBags(): List<TrashBag> {
+    fun aprilTrashBags(): List<TrashBag> {
         val aprilTrashBags = mutableListOf<TrashBag>()
         aprilTrashBags.add(
             TrashBag(
-                Month(4),
-                listOf(Day(12)),
+                Month(MonthOfYear.APRIL.ordinal),
+                arrayOf(Day(12)),
                 BagColor("Gray")
             )
         )
         aprilTrashBags.add(
             TrashBag(
-                Month(4),
-                listOf(Day(6), Day(20)),
+                Month(MonthOfYear.APRIL.ordinal),
+                arrayOf(Day(6), Day(20)),
                 BagColor("Green")
             )
         )
         aprilTrashBags.add(
             TrashBag(
-                Month(4),
-                listOf(Day(13), Day(27)),
+                Month(MonthOfYear.APRIL.ordinal),
+                arrayOf(Day(13), Day(27)),
                 BagColor("Purple")
             )
         )
@@ -117,26 +134,26 @@ object TrashBags {
     }
 
     // may trash bags
-    private fun mayTrashBags(): List<TrashBag> {
+    fun mayTrashBags(): List<TrashBag> {
         val mayTrashBags = mutableListOf<TrashBag>()
         mayTrashBags.add(
             TrashBag(
-                Month(5),
-                listOf(Day(10)),
+                Month(MonthOfYear.MAY.ordinal),
+                arrayOf(Day(10)),
                 BagColor("Gray")
             )
         )
         mayTrashBags.add(
             TrashBag(
-                Month(5),
-                listOf(Day(4), Day(18)),
+                Month(MonthOfYear.MAY.ordinal),
+                arrayOf(Day(4), Day(18)),
                 BagColor("Green")
             )
         )
         mayTrashBags.add(
             TrashBag(
-                Month(5),
-                listOf(Day(11), Day(27)),
+                Month(MonthOfYear.MAY.ordinal),
+                arrayOf(Day(11), Day(27)),
                 BagColor("Purple")
             )
         )
@@ -144,26 +161,26 @@ object TrashBags {
     }
 
     // june trash bags
-    private fun juneTrashBags(): List<TrashBag> {
+    fun juneTrashBags(): List<TrashBag> {
         val juneTrashBags = mutableListOf<TrashBag>()
         juneTrashBags.add(
             TrashBag(
-                Month(6),
-                listOf(Day(7)),
+                Month(MonthOfYear.JUNE.ordinal),
+                arrayOf(Day(7)),
                 BagColor("Gray")
             )
         )
         juneTrashBags.add(
             TrashBag(
-                Month(6),
-                listOf(Day(1), Day(15), Day(29)),
+                Month(MonthOfYear.JUNE.ordinal),
+                arrayOf(Day(1), Day(15), Day(29)),
                 BagColor("Green")
             )
         )
         juneTrashBags.add(
             TrashBag(
-                Month(6),
-                listOf(Day(8), Day(22)),
+                Month(MonthOfYear.JUNE.ordinal),
+                arrayOf(Day(8), Day(22)),
                 BagColor("Purple")
             )
         )
@@ -171,26 +188,26 @@ object TrashBags {
     }
 
     // july trash bags
-    private fun julyTrashBags(): List<TrashBag> {
+    fun julyTrashBags(): List<TrashBag> {
         val julyTrashBags = mutableListOf<TrashBag>()
         julyTrashBags.add(
             TrashBag(
-                Month(7),
-                listOf(Day(5)),
+                Month(MonthOfYear.JULY.ordinal),
+                arrayOf(Day(5)),
                 BagColor("Gray")
             )
         )
         julyTrashBags.add(
             TrashBag(
-                Month(7),
-                listOf(Day(13), Day(27)),
+                Month(MonthOfYear.JULY.ordinal),
+                arrayOf(Day(13), Day(27)),
                 BagColor("Green")
             )
         )
         julyTrashBags.add(
             TrashBag(
-                Month(7),
-                listOf(Day(6), Day(20)),
+                Month(MonthOfYear.JULY.ordinal),
+                arrayOf(Day(6), Day(20)),
                 BagColor("Purple")
             )
         )
@@ -198,26 +215,26 @@ object TrashBags {
     }
 
     // august trash bags
-    private fun augustTrashBags(): List<TrashBag> {
+    fun augustTrashBags(): List<TrashBag> {
         val augustTrashBags = mutableListOf<TrashBag>()
         augustTrashBags.add(
             TrashBag(
-                Month(8),
-                listOf(Day(2), Day(30)),
+                Month(MonthOfYear.AUGUST.ordinal),
+                arrayOf(Day(2), Day(30)),
                 BagColor("Gray")
             )
         )
         augustTrashBags.add(
             TrashBag(
-                Month(8),
-                listOf(Day(10), Day(24)),
+                Month(MonthOfYear.AUGUST.ordinal),
+                arrayOf(Day(10), Day(24)),
                 BagColor("Green")
             )
         )
         augustTrashBags.add(
             TrashBag(
-                Month(8),
-                listOf(Day(3), Day(17), Day(31)),
+                Month(MonthOfYear.AUGUST.ordinal),
+                arrayOf(Day(3), Day(17), Day(31)),
                 BagColor("Purple")
             )
         )
@@ -225,26 +242,26 @@ object TrashBags {
     }
 
     // september trash bags
-    private fun septemberTrashBags(): List<TrashBag> {
+    fun septemberTrashBags(): List<TrashBag> {
         val septemberTrashBags = mutableListOf<TrashBag>()
         septemberTrashBags.add(
             TrashBag(
-                Month(9),
-                listOf(Day(27)),
+                Month(MonthOfYear.SEPTEMBER.ordinal),
+                arrayOf(Day(27)),
                 BagColor("Gray")
             )
         )
         septemberTrashBags.add(
             TrashBag(
-                Month(9),
-                listOf(Day(7), Day(21)),
+                Month(MonthOfYear.SEPTEMBER.ordinal),
+                arrayOf(Day(7), Day(21)),
                 BagColor("Green")
             )
         )
         septemberTrashBags.add(
             TrashBag(
-                Month(9),
-                listOf(/*Day(1) */Day(14),
+                Month(MonthOfYear.SEPTEMBER.ordinal),
+                arrayOf(/*Day(1) */Day(14),
                     Day(28)
                 ), /////// 1st September should become 31st august Purple
                 BagColor("Purple")
@@ -254,26 +271,26 @@ object TrashBags {
     }
 
     // october trash bags
-    private fun octoberTrashBags(): List<TrashBag> {
+    fun octoberTrashBags(): List<TrashBag> {
         val octoberTrashBags = mutableListOf<TrashBag>()
         octoberTrashBags.add(
             TrashBag(
-                Month(10),
-                listOf(Day(25)),
+                Month(MonthOfYear.OCTOBER.ordinal),
+                arrayOf(Day(25)),
                 BagColor("Gray")
             )
         )
         octoberTrashBags.add(
             TrashBag(
-                Month(10),
-                listOf(Day(5), Day(19)),
+                Month(MonthOfYear.OCTOBER.ordinal),
+                arrayOf(Day(5), Day(19)),
                 BagColor("Green")
             )
         )
         octoberTrashBags.add(
             TrashBag(
-                Month(10),
-                listOf(Day(12), Day(26)),
+                Month(MonthOfYear.OCTOBER.ordinal),
+                arrayOf(Day(12), Day(26)),
                 BagColor("Purple")
             )
         )
@@ -281,26 +298,26 @@ object TrashBags {
     }
 
     // november trash bags
-    private fun novemberTrashBags(): List<TrashBag> {
+    fun novemberTrashBags(): List<TrashBag> {
         val novemberTrashBags = mutableListOf<TrashBag>()
         novemberTrashBags.add(
             TrashBag(
-                Month(11),
-                listOf(Day(22)),
+                Month(MonthOfYear.NOVEMBER.ordinal),
+                arrayOf(Day(22)),
                 BagColor("Gray")
             )
         )
         novemberTrashBags.add(
             TrashBag(
-                Month(11),
-                listOf(Day(2), Day(16), Day(30)),
+                Month(MonthOfYear.NOVEMBER.ordinal),
+                arrayOf(Day(2), Day(16), Day(30)),
                 BagColor("Green")
             )
         )
         novemberTrashBags.add(
             TrashBag(
-                Month(11),
-                listOf(Day(9), Day(23)),
+                Month(MonthOfYear.NOVEMBER.ordinal),
+                arrayOf(Day(9), Day(23)),
                 BagColor("Purple")
             )
         )
@@ -308,19 +325,19 @@ object TrashBags {
     }
 
     // december trash bags
-    private fun decemberTrashBags(): List<TrashBag> {
+    fun decemberTrashBags(): List<TrashBag> {
         val decemberTrashBags = mutableListOf<TrashBag>()
         decemberTrashBags.add(
             TrashBag(
-                Month(12),
-                listOf(Day(20)),
+                Month(MonthOfYear.DECEMBER.ordinal),
+                arrayOf(Day(20)),
                 BagColor("Gray")
             )
         )
         decemberTrashBags.add(
             TrashBag(
-                Month(12),
-                listOf(/* Day(1),*/ Day(14),
+                Month(MonthOfYear.DECEMBER.ordinal),
+                arrayOf(/* Day(1),*/ Day(14),
                     Day(28)
                 ), ////////////////////// 1st dec should be November 30 green
                 BagColor("Green")
@@ -328,8 +345,8 @@ object TrashBags {
         )
         decemberTrashBags.add(
             TrashBag(
-                Month(12),
-                listOf(Day(7), Day(21)),
+                Month(MonthOfYear.DECEMBER.ordinal),
+                arrayOf(Day(7), Day(21)),
                 BagColor("Purple")
             )
         )

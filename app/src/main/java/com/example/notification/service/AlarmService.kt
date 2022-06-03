@@ -8,99 +8,75 @@ import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
+import android.os.SystemClock
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import com.example.notification.NOTIFICATION_ID
+import com.example.notification.NotificationMaker
+import com.example.notification.TAG
+import com.example.notification.data.TrashBags
+import com.example.notification.receiver.LockedBootReceiver
 import java.util.*
 
-class AlarmService(context: Context) {
+class AlarmService(private val context: Context) {
 
     init {
-        createAlarm(context)
+        createAlarm()
     }
 
-    private fun createAlarm(context: Context) {
-        val alarmManager =
-            context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+    private fun createAlarm() {
 
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.MONTH, 6)
-        calendar.set(Calendar.DATE, 3)
-        calendar.set(Calendar.HOUR, 3)
-        calendar.set(Calendar.MINUTE, 27)
+        val notificationMaker = NotificationMaker(context)
 
-        val timeDelayInMinutes = 10 * 60 * 1000L // 10 minutes
+        val januaryTrashBags = TrashBags.januaryTrashBags()
+        val januaryFirstTrashBag = januaryTrashBags[0]
+        val month = januaryFirstTrashBag.month
+        val days = januaryFirstTrashBag.days
+        val bagColor = januaryFirstTrashBag.bagColor
 
+        notificationMaker.createNotificationContent(januaryFirstTrashBag.bagColor.bagColor)
 
-//        Toast.makeText(context, "LockedBootReceiver 1 AlarmManager.OnAlarmListener", Toast.LENGTH_LONG)
-//            .show()
+        val notificationTitle = ""
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        val intent = Intent(context, LockedBootReceiver::class.java)
+        intent.putExtra("DATA", SystemClock.elapsedRealtime().toInt())
+        intent.putExtra(NOTIFICATION_ID, SystemClock.elapsedRealtime().toInt())
 
-            if (alarmManager == null) {
-                Toast.makeText(
+        var pendingIntent: PendingIntent? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            pendingIntent =
+                PendingIntent.getBroadcast(
                     context,
-                    "LockedBootReceiver alarmManager == null",
-                    Toast.LENGTH_LONG
+                    SystemClock.elapsedRealtime().toInt(),
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE
                 )
-                    .show()
-
-                Log.d("LockedBootReceiver", "LockedBootReceiver alarmManager == null")
-            } else {
-
-                Toast.makeText(
-                    context,
-                    "LockedBootReceiver alarmManager != null",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-
-                Log.d("LockedBootReceiver", "LockedBootReceiver alarmManager != null")
-                Log.d("LockedBootReceiver", "LockedBootReceiver ${calendar.get(Calendar.MONTH)}")
-                Log.d("LockedBootReceiver", "LockedBootReceiver ${calendar.get(Calendar.DATE)}")
-                Log.d("LockedBootReceiver", "LockedBootReceiver ${calendar.get(Calendar.HOUR)}")
-                Log.d("LockedBootReceiver", "LockedBootReceiver ${calendar.get(Calendar.MINUTE)}")
-            }
-
-            alarmManager?.setAlarmClock(
-                AlarmManager.AlarmClockInfo(
-                    System.currentTimeMillis(),
-//                AlarmManager.RTC_WAKEUP,
-//                calendar.timeInMillis,
-                    PendingIntent()
-                )
-//                "What Tag?",
-//                {
-//                    Toast.makeText(context, "LockedBootReceiver Exact alarm set", Toast.LENGTH_LONG)
-//                        .show()
-//
-//                    Log.d("LockedBootReceiver", "LockedBootReceiver Exact alarm set")
-//
-//                },
-//                null
-            )
-
-
-//            alarmManager?.setWindow(
-//                AlarmManager.RTC_WAKEUP,
-//                calendar.timeInMillis,
-//                timeDelayInMinutes,
-//                "What Tag?",
-//                {
-//                    Toast.makeText(context, "LockedBootReceiver AlarmManager.OnAlarmListener", Toast.LENGTH_LONG)
-//                        .show()
-//
-//                    Log.d("LockedBootReceiver", "AlarmManager.OnAlarmListener")
-//
-//                },
-//                null
-//            )
         }
 
-//        val pendingIntent =
-//            PendingIntent.getService(
-//                context, requestId, intent,
-//                PendingIntent.FLAG_NO_CREATE
-//            )
+        val alarmManager =
+            context.getSystemService(AppCompatActivity.ALARM_SERVICE) as? AlarmManager
+
+        val cal = Calendar.getInstance()
+        cal.set(Calendar.MONTH, 5)
+        cal.set(Calendar.DAY_OF_MONTH, 4)
+        cal.set(Calendar.HOUR, 2)
+        cal.set(Calendar.MINUTE, 38)
+
+        Log.d(TAG, cal.time.toString())
+        Log.d(TAG, cal.timeInMillis.toString())
+
+        val currentTime = System.currentTimeMillis()
+        val tenMinutesDelay = 10 * 60 * 1000L
+
+        alarmManager?.setWindow(
+            AlarmManager.RTC_WAKEUP,
+            cal.timeInMillis,
+            tenMinutesDelay,
+            pendingIntent
+        )
+
 
     }
 

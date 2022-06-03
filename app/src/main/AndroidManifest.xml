@@ -29,18 +29,17 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name=".receiver.LockedBootReceiver"/>
 
-        <receiver
-            android:name=".receiver.LockedBootReceiver"
-            android:directBootAware="true"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-                <!--                <action android:name="android.intent.action.AIRPLANE_MODE_CHANGED" />-->
-            </intent-filter>
-        </receiver>
+<!--        <receiver-->
+<!--            android:name=".receiver.LockedBootReceiver"-->
+<!--            android:directBootAware="true"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
         <!--        <service-->
         <!--            android:name=".service.AlarmService"-->
