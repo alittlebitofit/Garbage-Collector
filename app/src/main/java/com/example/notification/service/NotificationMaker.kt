@@ -1,25 +1,26 @@
-package com.example.notification
+package com.example.notification.service
 
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import android.os.Parcel
-import android.os.Parcelable
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.notification.data.TrashBag
-import java.io.Serializable
+import com.example.notification.R
+
+
+const val CHANNEL_ID = "channel id"
+const val CHANNEL_NAME = "Main Channel/Category"
+const val CHANNEL_DESCRIPTION = "channel description"
 
 class NotificationMaker(private val context: Context) {
-
 
     init {
         createNotificationChannel()
     }
 
+    // this just creates a channel/category of notification
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -38,25 +39,20 @@ class NotificationMaker(private val context: Context) {
         }
     }
 
-    fun createNotificationContent(
-        trashBagColor: String
-    ): Notification {
+    // this builds the actual content to be passed in the notification
+    fun notificationBuilder(trashBagColor: String): Notification {
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentTitle("$trashBagColor color garbage bag for tomorrow")
-//            .setContentText("textContent")
-            .setDefaults(Notification.DEFAULT_ALL)
+            .setDefaults(Notification.DEFAULT_ALL) // this is for sound or vibration or some other fancy thing
             .setPriority(NotificationCompat.PRIORITY_HIGH) // pops up the notification
             .build()
     }
 
-
-
+    // this notifies the user as a popup notification as well sticks to notification drawer
     fun notify(notificationID: Int, notification: Notification) {
         with(NotificationManagerCompat.from(context)) {
             notify(notificationID, notification)
-//            Toast.makeText(context, "notifying", Toast.LENGTH_LONG)
-//                .show()
         }
     }
 

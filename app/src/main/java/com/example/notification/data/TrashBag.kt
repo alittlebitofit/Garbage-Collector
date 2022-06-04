@@ -1,7 +1,5 @@
 package com.example.notification.data
 
-import android.icu.lang.UCharacter.JoiningGroup.FE
-
 
 data class TrashBag(val month: Month, val days: Array<Day>, val bagColor: BagColor)
 
