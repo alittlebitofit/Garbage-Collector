@@ -67,8 +67,8 @@ class AlarmMaker(private val context: Context) {
                     val cal = Calendar.getInstance()
                     cal.set(Calendar.MONTH, aMonth)
                     cal.set(Calendar.DAY_OF_MONTH, aDay)
-                    cal.set(Calendar.HOUR, 12)
-                    cal.set(Calendar.MINUTE, 0)
+                    cal.set(Calendar.HOUR, 11)
+                    cal.set(Calendar.MINUTE, 55)
                     cal.set(Calendar.SECOND, 0)
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -87,6 +87,8 @@ class AlarmMaker(private val context: Context) {
                             null
                         )
                     }
+
+//                    return
 
                 }
             }

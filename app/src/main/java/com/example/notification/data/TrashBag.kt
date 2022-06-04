@@ -171,7 +171,7 @@ object TrashBags {
         juneTrashBags.add(
             TrashBag(
                 Month(MonthOfYear.JUNE.ordinal),
-                arrayOf(Day(1), Day(15), Day(29)),
+                arrayOf(Day(1), Day(4), Day(15), Day(29)),
                 BagColor("Green")
             )
         )
